@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build":"npm install --prefix Backend && npm install --prefix Frontend && npm run build --prefix Frontend",
+    "build": "npm install --prefix Backend && npm install --prefix Frontend && npm run build --prefix Frontend",
     "start": "npm run start --prefix Backend",
     "dev": "npm run dev --prefix Backend"
   },
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/sureshchoudhary2003/CHATIFY/issues"
   },
-  "homepage": "https://github.com/sureshchoudhary2003/CHATIFY#readme"
+  "homepage": "https://github.com/sureshchoudhary2003/CHATIFY#readme",
+  "dependencies": {
+    "resend": "^6.26.0"
+  }
 }
