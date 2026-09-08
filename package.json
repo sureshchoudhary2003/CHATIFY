@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/sureshchoudhary2003/CHATIFY#readme",
   "dependencies": {
+    "cloudinary": "^2.5.1",
     "resend": "^6.26.0"
   }
 }
