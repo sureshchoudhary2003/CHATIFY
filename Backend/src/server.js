@@ -5,7 +5,7 @@ dns.setServers(['8.8.8.8', '8.8.4.4']);
 import express from "express";
 import cookieParser from "cookie-parser"
 import path from "path"
-
+import cors from "cors";
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js"
 import { connectDB } from "./lib/db.js";
@@ -16,7 +16,8 @@ const app = express();
 const __dirname = path.resolve();
 
 const port = ENV.PORT ;
-app.use(express.json()) //req.body
+app.use(express.json({ limit: "5mb" })) //req.body
+app.use(cors({origin:ENV.CLIENT_URL, credentials: true}));//allows to frontend to send cokies to our backend
 app.use(cookieParser())
 
 app.use("/api/auth",authRoutes);
