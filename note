@@ -1,4 +1,16 @@
- npm i express@4.21.2 mongoose@8.10.1 jsonwebtoken@9.0.2 bcryptjs@2.4.3
- npm i dotenv@16.4.7 cookie-parser@1.4.7
- mongooseDB atlas pw: ILuRCGeMRRnPuYw9
+//backend
+npm i express@4.21.2 mongoose@8.10.1 jsonwebtoken@9.0.2 bcryptjs@2.4.3
+npm i dotenv@16.4.7 cookie-parser@1.4.7
+mongooseDB atlas pw: ILuRCGeMRRnPuYw9
 // erase link : https://app.eraser.io/workspace/duWSGzgj44KQHXt39ciP
+postman for api test
+resend email for email welcome email message
+cloudinary for image uploaded
+arcjet for rate limitation
+
+//frontend
+
+axios replacement for fetch api
+zustand for state management libarary link react-redux 
+lucide-react : pageLoader -> LoadingIcon
+react-hot-toast  lib: good notification check in react-hot-toast
