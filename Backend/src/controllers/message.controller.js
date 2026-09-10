@@ -53,14 +53,15 @@ export const sendMessage = async(req,res) => {
         if (!receiverExists) {
         return res.status(404).json({ message: "Receiver not found." });
         }
-        console.log("text or image");
+        
+        
         let imageUrl;
         if (image) {
         // upload base64 image to cloudinary
         const uploadResponse = await cloudinary.uploader.upload(image);
         imageUrl = uploadResponse.secure_url;
         }
-        console.log("upload response");
+       
         const newMessage = new Message({
         senderId,
         receiverId,

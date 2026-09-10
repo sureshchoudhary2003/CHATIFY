@@ -16,7 +16,7 @@ const __dirname = path.resolve();
 
 const port = ENV.PORT ;
 app.use(express.json({ limit: "5mb" })) //req.body
-app.use(cors({origin:ENV.CLIENT_URL, credentials: true}));//allows to frontend to send cokies to our backend
+app.use(cors({origin:ENV.CLIENT_URL, credentials: true}));//allows to frontend to send cokies to our backend cross origin port request
 app.use(cookieParser())
 
 app.use("/api/auth",authRoutes);

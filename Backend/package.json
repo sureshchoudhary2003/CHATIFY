@@ -1,14 +1,14 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Real-time chat application built with MERN and Socket.io",
+  "main": "src/server.js",
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "suresh choudhary",
   "license": "ISC",
   "type": "module",
   "dependencies": {
