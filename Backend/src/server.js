@@ -23,7 +23,7 @@ app.use("/api/auth",authRoutes);
 app.use("/api/messages",messageRoutes);
 
 //make ready for deployment
-if(process.env.NODE_ENV === "production"){
+if(ENV.NODE_ENV === "production"){
     app.use(express.static(path.join(__dirname, "../Frontend/dist")));
 
     app.get("*", (_, res) => {
