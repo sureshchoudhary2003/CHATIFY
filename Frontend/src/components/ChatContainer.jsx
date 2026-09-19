@@ -33,48 +33,79 @@ function ChatContainer() {
   }, [messages]);
 
   return (
-    <>
+    <div className="flex-1 flex flex-col h-full w-full overflow-hidden bg-slate-950 relative">
       <ChatHeader />
-      <div className="flex-1 px-6 overflow-y-auto py-8">
+
+      {/* MESSAGES VIEWPORT */}
+      <div className="flex-1 overflow-y-auto px-3 sm:px-6 py-4 space-y-3 chat-wallpaper">
         {messages.length > 0 && !isMessagesLoading ? (
-          <div className="max-w-3xl mx-auto space-y-6">
-            {messages.map((msg) => (
-              <div
-                key={msg._id}
-                className={`chat ${msg.senderId === authUser._id ? "chat-end" : "chat-start"}`}
-              >
+          <div className="max-w-4xl mx-auto space-y-3">
+            {messages.map((msg) => {
+              const isMe = msg.senderId === authUser._id;
+
+              return (
                 <div
-                  className={`chat-bubble relative ${
-                    msg.senderId === authUser._id
-                      ? "bg-cyan-600 text-white"
-                      : "bg-slate-800 text-slate-200"
-                  }`}
+                  key={msg._id}
+                  className={`flex ${isMe ? "justify-end" : "justify-start"} items-end gap-2 group`}
                 >
-                  {msg.image && (
-                    <img src={msg.image} alt="Shared" className="rounded-lg h-48 object-cover" />
-                  )}
-                  {msg.text && <p className="mt-2">{msg.text}</p>}
-                  <p className="text-xs mt-1 opacity-75 flex items-center gap-1">
-                    {new Date(msg.createdAt).toLocaleTimeString(undefined, {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </p>
+                  <div
+                    className={`relative max-w-[85%] sm:max-w-[70%] rounded-2xl p-3 shadow-md transition-all ${
+                      isMe
+                        ? "bg-gradient-to-br from-cyan-600 to-cyan-700 text-white rounded-tr-xs shadow-cyan-900/20"
+                        : "bg-slate-800/90 border border-slate-700/60 text-slate-100 rounded-tl-xs shadow-black/20"
+                    }`}
+                  >
+                    {/* ATTACHED IMAGE */}
+                    {msg.image && (
+                      <div className="mb-2 overflow-hidden rounded-xl bg-black/20">
+                        <img
+                          src={msg.image}
+                          alt="Shared attachment"
+                          className="max-h-72 w-full object-cover rounded-xl hover:scale-[1.02] transition-transform duration-200 cursor-pointer"
+                          onClick={() => window.open(msg.image, "_blank")}
+                        />
+                      </div>
+                    )}
+
+                    {/* MESSAGE TEXT */}
+                    {msg.text && (
+                      <p className="text-sm leading-relaxed break-words whitespace-pre-wrap">
+                        {msg.text}
+                      </p>
+                    )}
+
+                    {/* TIMESTAMP & STATUS */}
+                    <div
+                      className={`flex items-center justify-end gap-1 mt-1 text-[10px] ${
+                        isMe ? "text-cyan-100/75" : "text-slate-400"
+                      }`}
+                    >
+                      <span>
+                        {new Date(msg.createdAt).toLocaleTimeString([], {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </span>
+                      {isMe && <span className="font-bold text-[11px] leading-none">✓✓</span>}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
-            {/* 👇 scroll target */}
+              );
+            })}
+            {/* Scroll Target */}
             <div ref={messageEndRef} />
           </div>
         ) : isMessagesLoading ? (
-          <MessagesLoadingSkeleton />
+          <div className="max-w-4xl mx-auto pt-4">
+            <MessagesLoadingSkeleton />
+          </div>
         ) : (
           <NoChatHistoryPlaceholder name={selectedUser.fullName} />
         )}
       </div>
 
       <MessageInput />
-    </>
+    </div>
   );
 }
 

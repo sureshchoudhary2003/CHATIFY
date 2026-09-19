@@ -18,8 +18,13 @@ export const useChatStore = create((set, get) => ({
     set({ isSoundEnabled: !get().isSoundEnabled });
   },
 
+  isDrawerOpen: false,
+  setIsDrawerOpen: (isDrawerOpen) => set({ isDrawerOpen }),
+  searchTerm: "",
+  setSearchTerm: (searchTerm) => set({ searchTerm }),
+
   setActiveTab: (tab) => set({ activeTab: tab }),
-  setSelectedUser: (selectedUser) => set({ selectedUser }),
+  setSelectedUser: (selectedUser) => set({ selectedUser, isDrawerOpen: false }),
 
   getAllContacts: async () => {
     set({ isUsersLoading: true });
