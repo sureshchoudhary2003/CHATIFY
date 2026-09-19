@@ -2,10 +2,9 @@ import { create } from "zustand";
 import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
+import { ENV } from "../lib/env.js";
 
-const BASE_URL =
-  import.meta.env.VITE_BACKEND_URL ||
-  (import.meta.env.MODE === "development" ? "http://localhost:3000" : "/");
+const BASE_URL = ENV.BACKEND_URL;
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
